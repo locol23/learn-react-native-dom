@@ -19,9 +19,16 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
+type Props = {text: string};
+
+const Test = props => <Text>{props.text}</Text>
+
 export default class App extends Component<Props> {
-  render() {
+  constructor(props){
+    super(props)
+    this.state = {text: 'test'}
+  }
+  render(){
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -30,14 +37,14 @@ export default class App extends Component<Props> {
         <Text style={styles.instructions}>
           To get started, edit App.js
         </Text>
+        <Test {...this.state} />
         <Text style={styles.instructions}>
           {instructions}
         </Text>
       </View>
-    );
+    )
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -54,5 +61,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1
   },
 });
